@@ -6,7 +6,7 @@ return {
     "mfussenegger/nvim-dap-python",
   },
   config = function()
-    require("venv-selector").setup {}
+    require("venv-selector").setup()
   end,
   event = "VeryLazy",
   keys = {
