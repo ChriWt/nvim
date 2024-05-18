@@ -1,111 +1,47 @@
 require "nvchad.mappings"
 
--- add yours here
-
+-- General keybindings
 local map = vim.keymap.set
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>")
+map("n", ";", ":", { desc = "Enter command mode" })
+map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
--- debug keymaps
+-- Debug keybindings
 local dap = require "dap"
-map("n", "<F5>", "", {
-  noremap = true,
-  silent = true,
-  callback = dap.continue,
-  desc = "Start/Continue Debug",
-})
-map("n", "<F10>", "", {
-  noremap = true,
-  silent = true,
-  callback = dap.step_over,
-  desc = "Step Over",
-})
-map("n", "<F11>", "", {
-  noremap = true,
-  silent = true,
-  callback = dap.step_into,
-  desc = "Step Into",
-})
-map("n", "<F12>", "", {
-  noremap = true,
-  silent = true,
-  callback = dap.step_out,
-  desc = "Step Out",
-})
-map("n", "<leader>b", "", {
-  noremap = true,
-  silent = true,
-  callback = dap.toggle_breakpoint,
-  desc = "Toggle Breakpoint",
-})
-map("n", "<leader>B", "", {
-  desc = "Toggle Condition Breakpoint",
-  noremap = true,
-  silent = true,
-  callback = function()
-    dap.set_breakpoint(vim.fn.input "Breakpoint condition: ")
-  end,
-})
-map("n", "<leader>lp", "", {
-  desc = "Log Point Message",
-  noremap = true,
-  silent = true,
-  callback = function()
-    dap.set_breakpoint(nil, nil, vim.fn.input "Log point message: ")
-  end,
-})
-map("n", "<leader>dr", "", {
-  desc = "Open Repl",
-  noremap = true,
-  silent = true,
-  callback = dap.repl.open,
-})
-map("n", "<leader>dl", "", {
-  desc = "Run Last Session",
-  noremap = true,
-  silent = true,
-  callback = dap.run_last,
-})
 
--- Telescope configurations for dap
-local telescope = require "telescope"
-map("n", "<leader>dc", telescope.extensions.dap.commands, {
-  noremap = true,
-  silent = true,
-  desc = "DAP Commands",
-})
-map("n", "<leader>dlc", telescope.extensions.dap.configurations, {
-  noremap = true,
-  silent = true,
-  desc = "DAP Configurations",
-})
-map("n", "<leader>dbl", telescope.extensions.dap.list_breakpoints, {
-  noremap = true,
-  silent = true,
-  desc = "List Breakpoints",
-})
-map("n", "<leader>df", telescope.extensions.dap.frames, {
-  noremap = true,
-  silent = true,
-  desc = "DAP Frames",
-})
-
-local js_based_languages = {
-  "typescript",
-  "javascript",
-  "typescriptreact",
-  "javascriptreact",
-  "vue",
+local dap_mappings = {
+  { "n", "<F5>", dap.continue, { desc = "Start/Continue Debug" } },
+  { "n", "<F10>", dap.step_over, { desc = "Step Over" } },
+  { "n", "<F11>", dap.step_into, { desc = "Step Into" } },
+  { "n", "<F12>", dap.step_out, { desc = "Step Out" } },
+  { "n", "<leader>b", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" } },
+  { "n", "<leader>B", function() dap.set_breakpoint(vim.fn.input "Breakpoint condition: ") end, { desc = "Toggle Condition Breakpoint" } },
+  { "n", "<leader>lp", function() dap.set_breakpoint(nil, nil, vim.fn.input "Log point message: ") end, { desc = "Log Point Message" } },
+  { "n", "<leader>dr", dap.repl.open, { desc = "Open REPL" } },
+  { "n", "<leader>dl", dap.run_last, { desc = "Run Last Session" } },
 }
 
-vim.api.nvim_set_keymap("n", "<leader>da", [[<cmd>lua DebugWithArgs()<CR>]], {
-  noremap = true,
-  silent = true,
-  desc = "Debug with args",
-})
+for _, mapping in ipairs(dap_mappings) do
+  map(mapping[1], mapping[2], "", { noremap = true, silent = true, callback = mapping[3], desc = mapping[4].desc })
+end
 
--- Function to debug with args
+-- Telescope configurations for DAP
+local telescope = require "telescope"
+
+local telescope_mappings = {
+  { "n", "<leader>dc", telescope.extensions.dap.commands, { desc = "DAP Commands" } },
+  { "n", "<leader>dlc", telescope.extensions.dap.configurations, { desc = "DAP Configurations" } },
+  { "n", "<leader>dbl", telescope.extensions.dap.list_breakpoints, { desc = "List Breakpoints" } },
+  { "n", "<leader>df", telescope.extensions.dap.frames, { desc = "DAP Frames" } },
+}
+
+for _, mapping in ipairs(telescope_mappings) do
+  map(mapping[1], mapping[2], "", { noremap = true, silent = true, callback = mapping[3], desc = mapping[4].desc })
+end
+
+-- Debug with args function
+local js_based_languages = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }
+
 function DebugWithArgs()
   if vim.fn.filereadable ".vscode/launch.json" == 1 then
     local dap_vscode = require "dap.ext.vscode"
@@ -117,25 +53,15 @@ function DebugWithArgs()
   else
     print "launch.json not found"
   end
-  require("dap").continue()
+  dap.continue()
 end
 
--- dapui
-map("n", "no", "[[<cmd>lua require('dapui').open()<CR>]]", {
-  noremap = true,
-  silent = true,
-  desc = "Open dapui"
-})
+map("n", "<leader>da", "<cmd>lua DebugWithArgs()<CR>", { noremap = true, silent = true, desc = "Debug with args" })
 
-map("n", "nc", "[[<cmd>lua require('dapui').close()<CR>]]", {
-  noremap = true,
-  silent = true,
-  desc = "Open dapui"
-})
+-- DAP UI
+map("n", "<leader>do", "<cmd>lua require('dapui').open()<CR>", { noremap = true, silent = true, desc = "Open DAP UI" })
+map("n", "<leader>dc", "<cmd>lua require('dapui').close()<CR>", { noremap = true, silent = true, desc = "Close DAP UI" })
 
 -- Navbuddy
-map("n", "nb", "[[<cmd>lua require('nvim-navbuddy').open()<CR>]]", {
-  noremap = true,
-  silent = true,
-  desc = "Open navbuddy"
-})
+map("n", "<leader>nb", "<cmd>lua require('nvim-navbuddy').open()<CR>", { noremap = true, silent = true, desc = "Open Navbuddy" })
+

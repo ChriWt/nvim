@@ -1,6 +1,7 @@
 return {
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
+
   ui = {
     icons = {
       ft = "",
@@ -9,6 +10,7 @@ return {
       not_loaded = "",
     },
   },
+
   performance = {
     rtp = {
       disabled_plugins = {
@@ -43,4 +45,3 @@ return {
     },
   },
 }
-
