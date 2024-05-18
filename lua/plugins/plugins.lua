@@ -25,6 +25,7 @@ local plugins = {
       "folke/neodev.nvim",
       "leoluz/nvim-dap-go",
       "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
       "nvim-telescope/telescope.nvim",
       "nvim-telescope/telescope-dap.nvim",
@@ -70,6 +71,7 @@ local plugins = {
       }
       require("dap-go").setup()
       telescope.load_extension "dap"
+      require("nvim-dap-virtual-text").setup()
     end,
   },
   {

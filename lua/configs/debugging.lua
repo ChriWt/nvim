@@ -183,3 +183,10 @@ for _, language in ipairs(js_based_languages) do
     },
   }
 end
+
+-- debugger configurations
+vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpointCondition', {text='', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpointRejected', {text='⚠️', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapLogPoint', {text='💬', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapStopped', {text='', texthl='', linehl='', numhl=''})
