@@ -64,8 +64,7 @@ dap.configurations.python = {
   {
     type = "python",
     request = "launch",
-    name = "Launch file",
-
+    name = ">> Launch file",
     program = "${file}",
     pythonPath = function()
       local cwd = vim.fn.getcwd()
@@ -77,6 +76,16 @@ dap.configurations.python = {
       end
     end,
   },
+  {
+    type = "python",
+    request = "attach",
+    name = ">> Attach to FastAPI",
+    connect = {
+      host = "8098DS3-A081",
+      port = 5678
+    },
+    justMyCode = false,
+  }
 }
 
 -- JS / TS / REACT

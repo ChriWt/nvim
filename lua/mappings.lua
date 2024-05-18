@@ -120,6 +120,18 @@ function DebugWithArgs()
   require("dap").continue()
 end
 
+-- dapui
+map("n", "no", "[[<cmd>lua require('dapui').open()<CR>]]", {
+  noremap = true,
+  silent = true,
+  desc = "Open dapui"
+})
+
+map("n", "nc", "[[<cmd>lua require('dapui').close()<CR>]]", {
+  noremap = true,
+  silent = true,
+  desc = "Open dapui"
+})
 
 -- Navbuddy
 map("n", "nb", "[[<cmd>lua require('nvim-navbuddy').open()<CR>]]", {
