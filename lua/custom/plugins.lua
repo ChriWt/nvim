@@ -1,8 +1,8 @@
 return {
-  require("plugins.venv_selector"),
-  require("plugins.toggleterm"),
-  require("plugins.nvim_dap"),
-  require("plugins.nvim_navic"),
-  require("plugins.nvim_navbuddy"),
+  require("custom.plugins.nvim_venv_selector"), -- Updated import path
+  require("custom.plugins.nvim_toggleterm"),    -- Updated import path
+  require("custom.plugins.nvim_dap"),      -- Updated import path
+  require("custom.plugins.nvim_navic"),    -- Updated import path
+  require("custom.plugins.nvim_navbuddy"), -- Updated import path
 }
 
