@@ -34,7 +34,9 @@ dofile(vim.g.base46_cache .. "statusline")
 -- Load custom configurations
 require "nvchad.autocmds"
 require "custom.lspconfig"
-require "configs.dap.dap"
+require "configs.dap"
+
+require("custom.plugins.highlights").setup()
 
 -- Load key mappings after plugins are initialized
 vim.schedule(function()

@@ -1,5 +1,8 @@
 -- Main configuration file
 
+-- Load Lazy configuration
+require("configs.lazy")
+
 -- Load DAP configurations
 require("configs.dap.dap")
 
