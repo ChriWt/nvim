@@ -38,6 +38,9 @@ require "configs.dap"
 
 require("custom.plugins.highlights").setup()
 
+-- Set the winbar to navic
+vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+
 -- Load key mappings after plugins are initialized
 vim.schedule(function()
   require "mappings"

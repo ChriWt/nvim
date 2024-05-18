@@ -14,6 +14,3 @@ require "configs.ui"
 
 -- Load performance optimizations
 require "configs.performance"
-
--- Load Lazy configurations
-require "configs.lazy"
