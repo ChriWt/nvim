@@ -4,7 +4,7 @@
 require "options"
 
 -- Load custom plugins
-require "custom.plugins"
+-- require "custom.plugins"
 
 -- Load custom key mappings
 require "mappings"

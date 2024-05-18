@@ -36,7 +36,7 @@ require "nvchad.autocmds"
 require "custom.lspconfig"
 require "configs.dap"
 
-require("custom.plugins.highlights").setup()
+require("highlights").setup()
 
 -- Load key mappings after plugins are initialized
 vim.schedule(function()

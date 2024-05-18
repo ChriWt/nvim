@@ -10,7 +10,7 @@ return {
     "nvim-telescope/telescope-dap.nvim",
     {
       "microsoft/vscode-js-debug",
-      build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -Recurse out && mv dist out",
+      build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle &&  mv dist out",
       version = "1.*",
     },
     {
@@ -36,7 +36,6 @@ return {
     },
   },
   config = function()
-    local telescope = require "telescope"
     require("dapui").setup {
       controls = {
         icons = {
@@ -49,7 +48,7 @@ return {
       library = { plugins = { "nvim-dap-ui" }, types = true },
     }
     require("dap-go").setup()
-    telescope.load_extension "dap"
+    require("telescope").load_extension("dap")
     require("nvim-dap-virtual-text").setup()
   end,
 }
