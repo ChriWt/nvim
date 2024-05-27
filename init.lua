@@ -21,3 +21,4 @@ require("lazy").setup({
 }, lazy_conf)
 
 require("configs")
+require("configs.keymaps")
