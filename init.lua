@@ -1,6 +1,11 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_netrwPlugin = 1
+vim.loader.enable()
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
