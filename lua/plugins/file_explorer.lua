@@ -1,5 +1,12 @@
 return {
   'nvim-telescope/telescope.nvim', tag = '0.1.6',
   lazy = true,
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  event = "VimEnter",
+  dependencies = { 
+    {
+      'nvim-lua/plenary.nvim',
+      lazy = true,
+      event = "VimEnter",
+    },
+  },
 }
