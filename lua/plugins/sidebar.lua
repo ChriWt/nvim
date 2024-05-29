@@ -9,10 +9,10 @@ return {
     "MunifTanjim/nui.nvim",
   },
   config = function()
-    vim.keymap.set('n', '<C-n>', ':Neotree<CR>', { desc = "Open File Navigation" })
-
     require("neo-tree").setup(
       require("configs.plugins.sidebar")
     )
+
+    vim.keymap.set('n', '<C-n>', ':Neotree position=left toggle<CR>', { desc = "Open File Navigation" })
   end
 }

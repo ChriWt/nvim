@@ -1,4 +1,7 @@
 return {
+  source_selector = {
+    winbar = true,
+  },
   popup_border_style = "rounded",
   enable_git_status = true,
   enable_diagnostics = true,
@@ -29,12 +32,12 @@ return {
       }
     },
     file_size = {
-      ["<cr>"] = "open",
-      ["<esc>"] = "cancel",
       enabled = false,
+      -- required_width = 64
     },
     type = {
       enabled = false,
+      -- required_width = 122,
     },
     last_modified = {
       enabled = false,
@@ -52,12 +55,36 @@ return {
       noremap = true,
       nowait = true,
     },
-    mappings = require("configs.keymaps.sidebar")
+    mappings = require("configs.keymaps.sidebar")[1],
   },
 
   filesystem = {
     filtered_items = {
       visible = true,
+      never_show = {
+        "node_modules",
+        "venv",
+        ".venv",
+      },
+      always_show = {
+        ".gitignored",
+      }
     },
+
+    follow_current_file = {
+      enabled = true,
+    },
+
+    group_empty_dirs = false,
   },
+
+  git_status = {
+    window = {
+      mapping_options = {
+        noremap = true,
+        nowait = true,
+      },
+      mappings = require("configs.keymaps.sidebar")[2],
+    }
+  }
 }
