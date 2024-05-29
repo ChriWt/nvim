@@ -1,4 +1,4 @@
-local lazy_conf = {
+local lazyOpt = {
    defaults = {
       lazy = true,
    },
@@ -70,6 +70,7 @@ local lazy_conf = {
 			},
 		},
 	},
+  debug = false,
 }
 
-return lazy_conf
+return lazyOpt

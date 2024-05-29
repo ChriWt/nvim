@@ -5,3 +5,6 @@ vim.cmd("set shiftwidth=2")
 
 vim.opt.relativenumber = true
 vim.opt.number = true
+
+-- removes '~' on the left
+vim.opt.fillchars = { eob = " " }
