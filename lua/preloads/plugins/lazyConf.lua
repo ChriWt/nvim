@@ -1,4 +1,4 @@
-local lazyOpt = {
+return {
    defaults = {
       lazy = true,
    },
@@ -64,6 +64,7 @@ local lazyOpt = {
         "netrwSettings",
         "netrwFileHandlers",
         "matchit",
+        "man",
         "tar",
         "tarPlugin",
         "rrhelper",
@@ -80,10 +81,14 @@ local lazyOpt = {
         "compiler",
         "bugreport",
         "ftplugin",
+        "spellfile",
+        "shada",
+        "osc52",
+        "matchparen",
+        "nvim",
+        "editorconfig",
       },
     },	
   },
   debug = false,
 }
-
-return lazyOpt
