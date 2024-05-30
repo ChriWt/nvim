@@ -2,4 +2,4 @@ require("material").setup()
 
 vim.cmd("colorscheme material")
 
-require("material.functions").change_style("palenight")
+require("material.functions").change_style("darker")

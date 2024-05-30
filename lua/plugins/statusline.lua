@@ -1,10 +1,10 @@
 return {
-  'nvim-lualine/lualine.nvim',
+  'feline-nvim/feline.nvim',
   lazy = true,
-  event = 'VeryLazy',
+  event = "BufReadPre",
   config = function()
-    require('lualine').setup(
+    require("feline").setup(
       require("configs.plugins.statusline")
     )
-  end,
+  end
 }
