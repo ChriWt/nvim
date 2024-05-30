@@ -17,6 +17,8 @@ return {
     ["y"] = "copy_to_clipboard",
     ["x"] = "cut_to_clipboard",
     ["p"] = "paste_from_clipboard",
+    ["<C-g>"] = ":Neotree source=git_status toggle<CR>",
+    ["<C-b>"] = ":Neotree source=buffers toggle<CR>",
 
     -- search
     ["/"] = "fuzzy_finder",
