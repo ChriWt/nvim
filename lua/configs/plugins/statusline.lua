@@ -30,7 +30,6 @@ local c = {
 			name = "vi_mode",
 			opts = {
 				show_mode_name = true,
-				--padding = "center", -- Uncomment for extra padding.
 			},
 		},
 		hl = function()
