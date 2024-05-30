@@ -1,4 +1,5 @@
 return {
   "marko-cerovac/material.nvim",
-  lazy=true,
+  lazy = true,
+  event = "VimEnter"
 }

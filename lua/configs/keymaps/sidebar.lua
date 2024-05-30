@@ -1,7 +1,7 @@
 vim.keymap.set('n', '<C-g>', ':Neotree source=git_status toggle<CR>', { desc = "Show Git Status" })
 vim.keymap.set('n', '<C-b>', ':Neotree source=buffers toggle<CR>', { desc = "Show Buffers" })
 vim.keymap.set('n', '<C-ds>', ':Neotree source=document_symbols toggle<CR>', { desc = "Show File Structure" })
-vim.keymap.set('n', '<C-j>', ':Neotree action=focus<CR>', { desc = "Focus File Structure" })
+vim.keymap.set('n', '<C-h>', ':Neotree action=focus<CR>', { desc = "Focus File Structure" })
 
 return { 
   {

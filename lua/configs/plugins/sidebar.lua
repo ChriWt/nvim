@@ -1,6 +1,7 @@
 return {
   source_selector = {
     winbar = true,
+    statusline = false,
   },
   popup_border_style = "rounded",
   enable_git_status = true,
