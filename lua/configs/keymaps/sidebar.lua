@@ -1,3 +1,8 @@
+vim.keymap.set('n', '<C-g>', ':Neotree source=git_status toggle<CR>', { desc = "Show Git Status", noremap = true, silent = true })
+vim.keymap.set('n', '<C-b>', ':Neotree source=buffers toggle<CR>', { desc = "Show Buffers", noremap = true, silent = true })
+vim.keymap.set('n', '<C-ds>', ':Neotree source=document_symbols toggle<CR>', { desc = "Show File Structure", noremap = true, silent = true })
+vim.keymap.set('n', '<C-h>', ':Neotree action=focus<CR>', { desc = "Focus File Structure", noremap = true, silent = true })
+
 return { 
   {
     ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
