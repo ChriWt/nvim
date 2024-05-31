@@ -1,4 +1,3 @@
-
 local one_monokai = {
 	fg = "#abb2bf",
 	bg = "#1e2024",
@@ -24,34 +23,68 @@ local vi_mode_colors = {
 	COMMAND = "aqua",
 }
 
+ local mode_alias = {
+   n = 'NORMAL',
+   no = 'NORMAL',
+   i = 'INSERT',
+   v = 'VISUAL',
+   V = 'V-LINE',
+   [''] = 'V-BLOCK',
+   c = 'COMMAND',
+   cv = 'COMMAND',
+   ce = 'COMMAND',
+   R = 'REPLACE',
+   Rv = 'REPLACE',
+   s = 'SELECT',
+   S = 'SELECT',
+   [''] = 'SELECT',
+   t = 'TERMINAL',
+ }
+
+local function padded_position()
+    local cursor = vim.api.nvim_win_get_cursor(0) -- Get current cursor position (line and column)
+    local line = cursor[1]
+    local col = cursor[2]
+
+    -- Determine the maximum length of line and column numbers for padding purposes
+    local max_line_digits = 4
+    local max_col_digits = 2
+
+    -- Create formatted strings with padding applied
+    local line_str = string.format("%" .. max_line_digits .. "d", line)
+    local col_str = string.format("%-" .. max_col_digits .. "d", col)
+
+    return line_str .. ":" .. col_str
+end
+
+local vi_mode_utils = require 'feline.providers.vi_mode'
+
 local c = {
 	vim_mode = {
-		provider = {
-			name = "vi_mode",
-			opts = {
-				show_mode_name = true,
-			},
-		},
-		hl = function()
-			return {
-				fg = require("feline.providers.vi_mode").get_mode_color(),
-				bg = "darkblue",
-				style = "bold",
-				name = "NeovimModeHLColor",
-			}
-		end,
+		provider = function() return ' ' .. mode_alias[vim.fn.mode()] .. ' ' end,
+    icon = "",
+    hl = function()
+      return {
+        name = vi_mode_utils.get_mode_highlight_name(),
+        fg = one_monokai.bg,
+        bg = vi_mode_utils.get_mode_color(),
+        style = 'bold',
+      }
+    end,
 		left_sep = "block",
-		right_sep = "block",
+		right_sep = "",
 	},
 	gitBranch = {
 		provider = "git_branch",
+    icon = " ",
 		hl = {
 			fg = "peanut",
-			bg = "darkblue",
+			bg = "bg",
 			style = "bold",
 		},
 		left_sep = "block",
 		right_sep = "block",
+    enabled = function() return vim.b.gitsigns_status_dict ~= nil end,
 	},
 	gitDiffAdded = {
 		provider = "git_diff_added",
@@ -73,15 +106,19 @@ local c = {
 	},
 	gitDiffChanged = {
 		provider = "git_diff_changed",
+    icon = " ",
 		hl = {
 			fg = "fg",
 			bg = "darkblue",
 		},
 		left_sep = "block",
-		right_sep = "right_filled",
+		right_sep = "block",
 	},
 	separator = {
-		provider = "",
+    hl = {
+      fg = "darkblue",
+    },
+		provider = "",
 	},
 	fileinfo = {
 		provider = {
@@ -91,10 +128,12 @@ local c = {
 			},
 		},
 		hl = {
-			style = "bold",
+      fg = "fg",
+      bg = "darkblue",
+      style = "bold",
 		},
-		left_sep = " ",
-		right_sep = " ",
+		left_sep = "",
+		right_sep = "",
 	},
 	diagnostic_errors = {
 		provider = "diagnostic_errors",
@@ -154,10 +193,10 @@ local c = {
 		right_sep = "block",
 	},
 	position = {
-		provider = "position",
+    provider = padded_position,
 		hl = {
 			fg = "green",
-			bg = "darkblue",
+			bg = "bg",
 			style = "bold",
 		},
 		left_sep = "block",
@@ -170,7 +209,8 @@ local c = {
 			bg = "darkblue",
 			style = "bold",
 		},
-		left_sep = "block",
+    icon = "  ",
+		left_sep = "",
 		right_sep = "block",
 	},
 	scroll_bar = {
@@ -185,27 +225,18 @@ local c = {
 local left = {
 	c.vim_mode,
 	c.gitBranch,
-	c.gitDiffAdded,
-  c.gitDiffRemoved,
-	c.gitDiffChanged,
-	c.separator,
+	c.fileinfo,
 }
 
-local middle = {
-	c.fileinfo,
+local middle = {}
+
+local right = {
 	c.diagnostic_errors,
 	c.diagnostic_warnings,
 	c.diagnostic_info,
 	c.diagnostic_hints,
-}
-
-local right = {
-	c.lsp_client_names,
-	c.file_type,
-	c.file_encoding,
 	c.position,
 	c.line_percentage,
-	c.scroll_bar,
 }
 
 local components = {
