@@ -10,7 +10,7 @@ return {
     ["S"] = "open_split",
     ["R"] = "refresh",
     ["I"] = "show_file_details",
-    ["H"] = "toggle_hidden", -- shows hidden files
+    ["H"] = "toggle_hidden",
     ["<tab>"] = "open",
 
     -- Manipulate file
