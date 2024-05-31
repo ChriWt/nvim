@@ -1,7 +1,8 @@
 return {
-  {
-    "*";
-  }, {
-    rgb_fn = true,
-  }
+	{
+		"*",
+	},
+	{
+		rgb_fn = true,
+	},
 }

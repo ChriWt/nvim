@@ -23,60 +23,62 @@ local vi_mode_colors = {
 	COMMAND = "aqua",
 }
 
- local mode_alias = {
-   n = 'NORMAL',
-   no = 'NORMAL',
-   i = 'INSERT',
-   v = 'VISUAL',
-   V = 'V-LINE',
-   [''] = 'V-BLOCK',
-   c = 'COMMAND',
-   cv = 'COMMAND',
-   ce = 'COMMAND',
-   R = 'REPLACE',
-   Rv = 'REPLACE',
-   s = 'SELECT',
-   S = 'SELECT',
-   [''] = 'SELECT',
-   t = 'TERMINAL',
- }
+local mode_alias = {
+	n = "NORMAL",
+	no = "NORMAL",
+	i = "INSERT",
+	v = "VISUAL",
+	V = "V-LINE",
+	[""] = "V-BLOCK",
+	c = "COMMAND",
+	cv = "COMMAND",
+	ce = "COMMAND",
+	R = "REPLACE",
+	Rv = "REPLACE",
+	s = "SELECT",
+	S = "SELECT",
+	[""] = "SELECT",
+	t = "TERMINAL",
+}
 
 local function padded_position()
-    local cursor = vim.api.nvim_win_get_cursor(0) -- Get current cursor position (line and column)
-    local line = cursor[1]
-    local col = cursor[2]
+	local cursor = vim.api.nvim_win_get_cursor(0) -- Get current cursor position (line and column)
+	local line = cursor[1]
+	local col = cursor[2]
 
-    -- Determine the maximum length of line and column numbers for padding purposes
-    local max_line_digits = 4
-    local max_col_digits = 2
+	-- Determine the maximum length of line and column numbers for padding purposes
+	local max_line_digits = 4
+	local max_col_digits = 2
 
-    -- Create formatted strings with padding applied
-    local line_str = string.format("%" .. max_line_digits .. "d", line)
-    local col_str = string.format("%-" .. max_col_digits .. "d", col)
+	-- Create formatted strings with padding applied
+	local line_str = string.format("%" .. max_line_digits .. "d", line)
+	local col_str = string.format("%-" .. max_col_digits .. "d", col)
 
-    return line_str .. ":" .. col_str
+	return line_str .. ":" .. col_str
 end
 
-local vi_mode_utils = require 'feline.providers.vi_mode'
+local vi_mode_utils = require("feline.providers.vi_mode")
 
 local c = {
 	vim_mode = {
-		provider = function() return ' ' .. mode_alias[vim.fn.mode()] .. ' ' end,
-    icon = "",
-    hl = function()
-      return {
-        name = vi_mode_utils.get_mode_highlight_name(),
-        fg = one_monokai.bg,
-        bg = vi_mode_utils.get_mode_color(),
-        style = 'bold',
-      }
-    end,
+		provider = function()
+			return " " .. mode_alias[vim.fn.mode()] .. " "
+		end,
+		icon = "",
+		hl = function()
+			return {
+				name = vi_mode_utils.get_mode_highlight_name(),
+				fg = one_monokai.bg,
+				bg = vi_mode_utils.get_mode_color(),
+				style = "bold",
+			}
+		end,
 		left_sep = "block",
 		right_sep = "",
 	},
 	gitBranch = {
 		provider = "git_branch",
-    icon = " ",
+		icon = " ",
 		hl = {
 			fg = "peanut",
 			bg = "bg",
@@ -84,7 +86,9 @@ local c = {
 		},
 		left_sep = "block",
 		right_sep = "block",
-    enabled = function() return vim.b.gitsigns_status_dict ~= nil end,
+		enabled = function()
+			return vim.b.gitsigns_status_dict ~= nil
+		end,
 	},
 	gitDiffAdded = {
 		provider = "git_diff_added",
@@ -106,7 +110,7 @@ local c = {
 	},
 	gitDiffChanged = {
 		provider = "git_diff_changed",
-    icon = " ",
+		icon = " ",
 		hl = {
 			fg = "fg",
 			bg = "darkblue",
@@ -115,9 +119,9 @@ local c = {
 		right_sep = "block",
 	},
 	separator = {
-    hl = {
-      fg = "darkblue",
-    },
+		hl = {
+			fg = "darkblue",
+		},
 		provider = "",
 	},
 	fileinfo = {
@@ -128,9 +132,9 @@ local c = {
 			},
 		},
 		hl = {
-      fg = "fg",
-      bg = "darkblue",
-      style = "bold",
+			fg = "fg",
+			bg = "darkblue",
+			style = "bold",
 		},
 		left_sep = "",
 		right_sep = "",
@@ -193,7 +197,7 @@ local c = {
 		right_sep = "block",
 	},
 	position = {
-    provider = padded_position,
+		provider = padded_position,
 		hl = {
 			fg = "green",
 			bg = "bg",
@@ -209,7 +213,7 @@ local c = {
 			bg = "darkblue",
 			style = "bold",
 		},
-    icon = "  ",
+		icon = "  ",
 		left_sep = "",
 		right_sep = "block",
 	},
@@ -245,24 +249,24 @@ local components = {
 }
 
 return {
-  components = components,
+	components = components,
 	theme = one_monokai,
 	vi_mode_colors = vi_mode_colors,
-  conditional_components = {
-    {
-      condition = function()
-        return vim.bo.filetype ~= "neo-tree" or vim.api.nvim_win_get_number(0) > 1
-      end,
-      active = {
-        left,
-        middle,
-        right,
-      },
-      inactive = {
-        left,
-        middle,
-        right,
-      },
-    },
-  }
+	conditional_components = {
+		{
+			condition = function()
+				return vim.bo.filetype ~= "neo-tree" or vim.api.nvim_win_get_number(0) > 1
+			end,
+			active = {
+				left,
+				middle,
+				right,
+			},
+			inactive = {
+				left,
+				middle,
+				right,
+			},
+		},
+	},
 }
