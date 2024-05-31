@@ -3,16 +3,17 @@ return {
     winbar = true,
     statusline = false,
   },
+  close_if_last_window = true,
   popup_border_style = "rounded",
   enable_git_status = true,
   enable_diagnostics = true,
   default_component_configs = {
     indent = {
-      indent_marker = " ",
-      last_indent_marker = " ",
+      with_markers = false,
+      highlight = "NeoTreeIndentMarker",
     },
     modified = {
-      symbol = "",
+      symbol = "",
     },
     name = {
       use_git_status_colors = true,

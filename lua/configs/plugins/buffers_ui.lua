@@ -2,7 +2,7 @@ return {
   tab_format = " #{i} #{b} #{f} ",
   auto_hide = true,
   flags = {
-    modified = "",
+    modified = "",
     not_modifiable = "",
     readonly = "",
   },
