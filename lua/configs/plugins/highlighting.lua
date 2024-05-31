@@ -6,7 +6,7 @@ local highlight_configure = function()
 
 	local config = require("nvim-treesitter.configs")
 	config.setup({
-		ensure_installed = { "lua", "python", "c", "go", "cpp" },
+    auto_install = true,
 		highlight = { enable = true },
 		indent = { enable = true },
 	})
