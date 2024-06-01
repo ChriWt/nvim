@@ -19,6 +19,7 @@ require("lazy").setup({
 
 require("configs")
 require("configs.keymaps")
+require("configs.highlights.highlights")
 
 vim.cmd([[
   syntax on
