@@ -1,9 +1,3 @@
-vim.cmd([[
-  syntax off
-  filetype off
-  filetype plugin indent off
-]])
-
 require("preloads")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
