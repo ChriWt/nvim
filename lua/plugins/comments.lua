@@ -3,6 +3,8 @@ return {
 	lazy = true,
 	event = "BufReadPre",
 	config = function()
-		require("Comment").setup()
+		require("Comment").setup(
+      require("configs.plugins.comments")
+    )
 	end,
 }
