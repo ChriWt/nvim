@@ -1,3 +1,9 @@
+vim.cmd([[
+  syntax off
+  filetype off
+  filetype plugin indent off
+]])
+
 require("preloads")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -20,3 +26,8 @@ require("lazy").setup({
 require("configs")
 require("configs.keymaps")
 
+vim.cmd([[
+  syntax on
+  filetype on
+  filetype plugin indent on
+]])
