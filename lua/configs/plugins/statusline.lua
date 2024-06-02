@@ -46,19 +46,34 @@ local buffers_cache = {}
 local function get_buffer_icon()
 	local filename = vim.fn.expand("%:t")
 
-  if buffers_cache[filename] ~= nil then
-    return buffers_cache[filename]
-  end
+	if buffers_cache[filename] ~= nil then
+		return buffers_cache[filename]
+	end
 
-	local file_icon, file_icon_color = require("nvim-web-devicons").get_icon_color(filename)
+	local file_icon, _ = require("nvim-web-devicons").get_icon_color(filename)
 
-  if file_icon == nil then
-    file_icon = " "
-    file_icon_color = one_monokai.red
-  end
+	if filename == "." then
+		file_icon = ""
+		filename = ""
+	end
 
-  buffers_cache[filename] = { icon = file_icon, color = file_icon_color, filename = filename }
+	if file_icon == nil then
+		file_icon = " "
+	end
+
+	buffers_cache[filename] = {
+		icon = file_icon,
+		filename = filename,
+	}
 	return buffers_cache[filename]
+end
+
+local function get_filename()
+	return get_buffer_icon().filename .. " "
+end
+
+local function get_icon()
+	return " " .. get_buffer_icon().icon .. " "
 end
 
 local function padded_position()
@@ -76,6 +91,38 @@ local function padded_position()
 
 	return line_str .. ":" .. col_str
 end
+
+local function update_file_icon_hl()
+	local bufname = vim.fn.expand("%:t")
+	local _, color = require("nvim-web-devicons").get_icon_color(bufname)
+	local hl_group = "FileIconCustomHL"
+	vim.api.nvim_set_hl(0, hl_group, { fg = color, bg = one_monokai.darkblue })
+	return hl_group
+end
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = function()
+		if vim.bo.filetype == "neo-tree" then
+			return
+		end
+		update_file_icon_hl()
+	end,
+})
+
+local fileinfo = {
+	icon = {
+		str = get_icon,
+		hl = update_file_icon_hl(),
+		always_visible = true,
+	},
+	provider = get_filename,
+	hl = function()
+		return { fg = "fg", bg = "darkblue", style = "bold" }
+	end,
+	left_sep = "slant_left_2",
+	right_sep = "slant_right",
+}
 
 local vi_mode_utils = require("feline.providers.vi_mode")
 
@@ -151,31 +198,13 @@ local c = {
 		},
 		provider = "",
 	},
-  space_separator = {
-    provider = " ",
-    hl = {
-      bg = "bg",
-    }
-  },
-	fileinfo = {
-		icon = {
-			str = " " .. get_buffer_icon().icon .. " ",
-			hl = {
-				fg = get_buffer_icon().color,
-				bg = "darkblue",
-				style = "bold",
-			},
-			always_visible = true,
-		},
-    provider = get_buffer_icon().filename .. " ",
+	space_separator = {
+		provider = " ",
 		hl = {
-			fg = "fg",
-			bg = "darkblue",
-			style = "bold",
+			bg = "bg",
 		},
-		left_sep = "slant_left_2",
-		right_sep = "slant_right",
 	},
+	fileinfo = fileinfo,
 	diagnostic_errors = {
 		provider = "diagnostic_errors",
 		hl = {
@@ -247,7 +276,7 @@ local c = {
 		provider = "line_percentage",
 		hl = {
 			fg = "bg",
-      bg = "green",
+			bg = "green",
 			style = "bold",
 		},
 		icon = "  ",
@@ -277,10 +306,10 @@ local right = {
 	c.diagnostic_warnings,
 	c.diagnostic_info,
 	c.diagnostic_hints,
-  c.space_separator,
-  c.left_separator,
+	c.space_separator,
+	c.left_separator,
 	c.position,
-  c.right_separator,
+	c.right_separator,
 	c.line_percentage,
 }
 
