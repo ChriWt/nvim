@@ -18,3 +18,8 @@ vim.api.nvim_set_keymap("n", "<C-Right>", ":vertical resize -2<CR>", { noremap =
 vim.api.nvim_set_keymap("n", "<leader>x", ":bp | bd #<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<tab>", ":bn<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-tab>", ":bp<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<Esc>", function()
+	vim.cmd("nohlsearch")
+	return vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
+end, { desc = "Clear Search" })
