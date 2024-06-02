@@ -41,6 +41,26 @@ local mode_alias = {
 	t = "TERMINAL",
 }
 
+local buffers_cache = {}
+
+local function get_buffer_icon()
+	local filename = vim.fn.expand("%:t")
+
+  if buffers_cache[filename] ~= nil then
+    return buffers_cache[filename]
+  end
+
+	local file_icon, file_icon_color = require("nvim-web-devicons").get_icon_color(filename)
+
+  if file_icon == nil then
+    file_icon = " "
+    file_icon_color = one_monokai.red
+  end
+
+  buffers_cache[filename] = { icon = file_icon, color = file_icon_color, filename = filename }
+	return buffers_cache[filename]
+end
+
 local function padded_position()
 	local cursor = vim.api.nvim_win_get_cursor(0) -- Get current cursor position (line and column)
 	local line = cursor[1]
@@ -62,9 +82,9 @@ local vi_mode_utils = require("feline.providers.vi_mode")
 local c = {
 	vim_mode = {
 		provider = function()
-			return " " .. mode_alias[vim.fn.mode()] .. " "
+			return " " .. mode_alias[vim.fn.mode()] .. ""
 		end,
-		icon = "",
+		icon = "",
 		hl = function()
 			return {
 				name = vi_mode_utils.get_mode_highlight_name(),
@@ -73,8 +93,9 @@ local c = {
 				style = "bold",
 			}
 		end,
+		padding = true,
 		left_sep = "block",
-		right_sep = "",
+		right_sep = "slant_right",
 	},
 	gitBranch = {
 		provider = "git_branch",
@@ -118,26 +139,42 @@ local c = {
 		left_sep = "block",
 		right_sep = "block",
 	},
-	separator = {
+	left_separator = {
 		hl = {
 			fg = "darkblue",
 		},
-		provider = "",
+		provider = "",
 	},
-	fileinfo = {
-		provider = {
-			name = "file_info",
-			opts = {
-				type = "relative-short",
-			},
+	right_separator = {
+		hl = {
+			fg = "green",
 		},
+		provider = "",
+	},
+  space_separator = {
+    provider = " ",
+    hl = {
+      bg = "bg",
+    }
+  },
+	fileinfo = {
+		icon = {
+			str = " " .. get_buffer_icon().icon .. " ",
+			hl = {
+				fg = get_buffer_icon().color,
+				bg = "darkblue",
+				style = "bold",
+			},
+			always_visible = true,
+		},
+    provider = get_buffer_icon().filename .. " ",
 		hl = {
 			fg = "fg",
 			bg = "darkblue",
 			style = "bold",
 		},
-		left_sep = "",
-		right_sep = "",
+		left_sep = "slant_left_2",
+		right_sep = "slant_right",
 	},
 	diagnostic_errors = {
 		provider = "diagnostic_errors",
@@ -167,7 +204,7 @@ local c = {
 			bg = "darkblue",
 			style = "bold",
 		},
-		left_sep = "left_filled",
+		left_sep = "slant_left_2",
 		right_sep = "block",
 	},
 	file_type = {
@@ -200,21 +237,21 @@ local c = {
 		provider = padded_position,
 		hl = {
 			fg = "green",
-			bg = "bg",
+			bg = "darkblue",
 			style = "bold",
 		},
-		left_sep = "block",
-		right_sep = "block",
+		left_sep = "slant_left_2",
+		right_sep = "slant_right",
 	},
 	line_percentage = {
 		provider = "line_percentage",
 		hl = {
-			fg = "aqua",
-			bg = "darkblue",
+			fg = "bg",
+      bg = "green",
 			style = "bold",
 		},
-		icon = "  ",
-		left_sep = "",
+		icon = "  ",
+		left_sep = "slant_left_2",
 		right_sep = "block",
 	},
 	scroll_bar = {
@@ -229,6 +266,7 @@ local c = {
 local left = {
 	c.vim_mode,
 	c.gitBranch,
+	c.left_separator,
 	c.fileinfo,
 }
 
@@ -239,7 +277,10 @@ local right = {
 	c.diagnostic_warnings,
 	c.diagnostic_info,
 	c.diagnostic_hints,
+  c.space_separator,
+  c.left_separator,
 	c.position,
+  c.right_separator,
 	c.line_percentage,
 }
 
