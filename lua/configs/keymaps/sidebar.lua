@@ -6,7 +6,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
 	"n",
-	"<C-b>",
+	"<C-o>",
 	":Neotree source=buffers toggle<CR>",
 	{ desc = "Show Buffers", noremap = true, silent = true }
 )
@@ -25,19 +25,12 @@ return {
 		["S"] = "open_split",
 		["R"] = "refresh",
 		["I"] = "show_file_details",
-		["H"] = "toggle_hidden",
 		["<tab>"] = "open",
 
 		-- Manipulate file
 		["y"] = "copy_to_clipboard",
 		["x"] = "cut_to_clipboard",
 		["p"] = "paste_from_clipboard",
-		["<C-g>"] = ":Neotree source=git_status toggle<CR>",
-		["<C-b>"] = ":Neotree source=buffers toggle<CR>",
-
-		-- search
-		["/"] = "fuzzy_finder",
-		["D"] = "fuzzy_finder_directory",
 
 		-- order
 		["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
