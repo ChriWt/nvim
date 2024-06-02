@@ -2,7 +2,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		lazy = true,
-		event = "BufReadPre",
+		event = "InsertEnter",
 		config = function()
 			require("mason").setup()
 		end,
@@ -10,7 +10,7 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		lazy = true,
-		event = "BufReadPre",
+		event = "InsertEnter",
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = require("configs.plugins.language_server").ensure_installed,
@@ -20,7 +20,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		lazy = true,
-		event = "BufReadPre",
+		event = "InsertEnter",
 		config = require("configs.plugins.language_server").lspconf_setup,
 	},
 }

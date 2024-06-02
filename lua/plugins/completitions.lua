@@ -2,12 +2,12 @@ return {
 	{
 		"hrsh7th/cmp-nvim-lsp",
 		lazy = true,
-		event = "BufReadPre",
+		event = "InsertEnter",
 	},
 	{
 		"L3MON4D3/LuaSnip",
 		lazy = true,
-		event = "BufReadPre",
+		event = "InsertEnter",
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
@@ -16,7 +16,7 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		lazy = true,
-		event = "BufReadPre",
+		event = "InsertEnter",
 		config = require("configs.plugins.completition"),
 	},
 }
