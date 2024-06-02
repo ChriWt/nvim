@@ -1,5 +1,5 @@
 return {
-	tint = -50,
+	tint = -60,
 	saturation = 0.8,
 	highlight_ignore_patterns = {
 		"WinSeparator",
