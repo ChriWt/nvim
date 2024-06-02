@@ -1,6 +1,7 @@
 return {
 	tab_format = " #{i} #{b} #{f} ",
 	auto_hide = true,
+  go_to_maps = false,
 	flags = {
 		modified = "",
 		not_modifiable = "",
