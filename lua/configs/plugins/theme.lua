@@ -1,5 +1,10 @@
-require("material").setup()
+return function()
+	require("kanagawa").setup({
+		commentStyle = { italic = true },
+		statementStyle = { bold = true },
+    theme = "wave",
+    transparent = false,
+	})
 
-vim.cmd("colorscheme material")
-
-require("material.functions").change_style("darker")
+	vim.cmd("colorscheme kanagawa")
+end
