@@ -5,7 +5,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.6",
 		lazy = true,
-		keys = { "<leader>Ff", "<leader>Fi", "<leader>Fo", "<leader>th", "<leader>hh" },
+		keys = { "<leader>ff", "<leader>fi", "<leader>fo", "<leader>th", "<leader>hh" },
 		dependencies = {
 			{
 				"nvim-lua/plenary.nvim",
