@@ -2,6 +2,7 @@ return {
 	ensure_installed = {
 		"lua_ls",
 		"pyright",
+		"tsserver",
 	},
 	lspconf_setup = function()
 		local lspconfig = require("lspconfig")
@@ -14,6 +15,10 @@ return {
 		})
 
 		lspconfig.pyright.setup({
+			capabilities = capabilities,
+		})
+
+		lspconfig.tsserver.setup({
 			capabilities = capabilities,
 		})
 
