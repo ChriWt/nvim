@@ -1,8 +1,7 @@
 return {
 	"folke/which-key.nvim",
 	lazy = true,
-	event = "VeryLazy",
-  priority = 10000,
+  keys = {"<leader>"},
 	config = function()
 		vim.o.timeout = true
 		vim.o.timeoutlen = 300
