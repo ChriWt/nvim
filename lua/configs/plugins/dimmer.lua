@@ -5,6 +5,7 @@ return {
 		"WinSeparator",
 		"Status.*",
 		"LineNr",
+    "NeoTreeDotfile",
 		"Comment",
 	},
 }

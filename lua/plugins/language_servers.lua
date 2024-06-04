@@ -20,6 +20,8 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		lazy = true,
+    cmd = { "LspInfo" },
+    keys = { "gd" },
 		event = "InsertEnter",
 		config = require("configs.plugins.language_server").lspconf_setup,
 	},
