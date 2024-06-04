@@ -1,16 +1,3 @@
-vim.keymap.set(
-	"n",
-	"<C-n>",
-	":Neotree position=left toggle<CR>",
-	{ desc = "Open File Navigation", noremap = true, silent = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>e",
-	":Neotree position=left toggle<CR>",
-	{ desc = "Open File Navigation", noremap = true, silent = true }
-)
-
 return {
 	source_selector = {
 		winbar = true,
