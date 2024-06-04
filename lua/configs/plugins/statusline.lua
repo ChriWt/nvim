@@ -1,6 +1,5 @@
 local one_monokai = {
   fg = "#abb2bf",
-  -- bg = "#1e2024",
   bg = "#16161d",
   green = "#98c379",
   yellow = "#e5c07b",
@@ -121,8 +120,8 @@ local fileinfo = {
   hl = function()
     return { fg = "fg", bg = "darkblue", style = "bold" }
   end,
-  left_sep = "slant_left_2",
-  right_sep = "slant_right",
+  left_sep = "slant_left",
+  right_sep = "slant_right_2",
 }
 
 local vi_mode_utils = require("feline.providers.vi_mode")
@@ -130,7 +129,7 @@ local vi_mode_utils = require("feline.providers.vi_mode")
 local c = {
   vim_mode = {
     provider = function()
-      return " " .. mode_alias[vim.fn.mode()] .. ""
+      return " " .. mode_alias[vim.fn.mode()] .. ""
     end,
     icon = "",
     hl = function()
@@ -143,7 +142,7 @@ local c = {
     end,
     padding = true,
     left_sep = "block",
-    right_sep = "slant_right",
+    right_sep = "slant_right_2",
   },
   gitBranch = {
     provider = "git_branch",
@@ -191,9 +190,15 @@ local c = {
     hl = {
       fg = "darkblue",
     },
-    provider = "",
+    provider = "",
   },
   right_separator = {
+    hl = {
+      fg = "darkblue",
+    },
+    provider = "",
+  },
+  right_green_separator = {
     hl = {
       fg = "green",
     },
@@ -295,9 +300,9 @@ local c = {
 
 local left = {
   c.vim_mode,
-  c.gitBranch,
-  c.left_separator,
   c.fileinfo,
+  c.left_separator,
+  c.gitBranch,
 }
 
 local middle = {}
@@ -308,9 +313,9 @@ local right = {
   c.diagnostic_info,
   c.diagnostic_hints,
   c.space_separator,
-  c.left_separator,
-  c.position,
   c.right_separator,
+  c.position,
+  c.right_green_separator,
   c.line_percentage,
 }
 
