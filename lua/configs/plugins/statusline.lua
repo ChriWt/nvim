@@ -52,13 +52,13 @@ local function get_buffer_icon()
 
   local file_icon, _ = require("nvim-web-devicons").get_icon_color(filename)
 
+  if file_icon == nil then
+    file_icon = ""
+  end
+
   if filename == "." then
     file_icon = ""
     filename = ""
-  end
-
-  if file_icon == nil then
-    file_icon = " "
   end
 
   buffers_cache[filename] = {
