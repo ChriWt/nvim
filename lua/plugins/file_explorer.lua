@@ -10,7 +10,7 @@ return {
 			{
 				"nvim-lua/plenary.nvim",
 				lazy = true,
-				keys = { "<leader>e" },
+				keys = { "<leader>ff" },
 			},
 		},
 		config = configs.telescope_config,
@@ -18,7 +18,7 @@ return {
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
 		lazy = true,
-		keys = { "<leader>e", "<leader>fi", "<leader>fo", "<leader>th", "<leader>hh" },
+		keys = { "<leader>ff", "<leader>fi", "<leader>fo", "<leader>th", "<leader>hh" },
 		event = "BufReadPre",
 		config = configs.telescope_ui_config,
 	},
