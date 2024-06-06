@@ -69,3 +69,14 @@ vim.keymap.set(
 	":Neotree position=left toggle focus<CR>",
 	{ desc = "Open File Navigation", noremap = true, silent = true }
 )
+
+-- Map <C-Del> to execute 'de' in normal mode
+vim.api.nvim_set_keymap('n', '<C-Del>', 'de', { noremap = true, silent = true })
+
+-- Map 'y' to yank to the system clipboard in normal and visual modes
+vim.api.nvim_set_keymap('n', 'y', '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'y', '"+y', { noremap = true, silent = true })
+
+-- Map 'p' to pase to the system clipboard in normal and visual modes
+vim.api.nvim_set_keymap('n', 'p', '"+p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'p', '"+p', { noremap = true, silent = true })
