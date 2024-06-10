@@ -8,6 +8,7 @@ vim.cmd("set noruler")
 
 vim.opt.relativenumber = true
 vim.opt.number = true
+vim.opt.termguicolors = true
 
 -- removes '~' on the left
 vim.opt.fillchars = { eob = " " }
