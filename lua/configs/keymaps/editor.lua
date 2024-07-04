@@ -80,3 +80,11 @@ vim.api.nvim_set_keymap('v', 'y', '"+y', { noremap = true, silent = true })
 -- Map 'p' to pase to the system clipboard in normal and visual modes
 vim.api.nvim_set_keymap('n', 'p', '"+p', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', 'p', '"+p', { noremap = true, silent = true })
+
+-- Map 'd' to delete without yanking
+vim.api.nvim_set_keymap('n', 'd', '"_d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'd', '"_d', { noremap = true, silent = true })
+
+-- Map '<leader>d' to delete and yank to system clipboard
+vim.api.nvim_set_keymap('n', '<leader>d', '"+d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>d', '"+d', { noremap = true, silent = true })
