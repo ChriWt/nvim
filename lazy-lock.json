@@ -29,6 +29,8 @@
   "tint.nvim": { "branch": "master", "commit": "02bd0527a315a80e4e25bb2dd7b6994fb0daae01" },
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "5dca50a84398bb003ef517083a76334e437b3b0c" },
   "toggleterm.nvim": { "branch": "main", "commit": "066cccf48a43553a80a210eb3be89a15d789d6e6" },
+  "typr": { "branch": "main", "commit": "8904dc09ed4e4a4397fc3a4f2884f11e85d27c5d" },
   "venv-selector.nvim": { "branch": "main", "commit": "6a1b15eb35bbb827b6db428055087e2dbf32838f" },
+  "volt": { "branch": "main", "commit": "1a7d6b1dfb2f176715ccc9e838be32d044f8a734" },
   "which-key.nvim": { "branch": "main", "commit": "4b7167f8fb2dba3d01980735e3509e172c024c29" }
 }

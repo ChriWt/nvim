@@ -25,6 +25,11 @@ return {
 			capabilities = capabilities,
 		})
 
+    lspconfig.svelte.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+
 		require("configs.keymaps.language_server")
 	end,
 }
