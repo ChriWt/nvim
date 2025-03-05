@@ -3,6 +3,9 @@ return {
 		"lua_ls",
 		"pyright",
 		"tsserver",
+    "svelte",
+    "cssls",
+    "html",
 	},
 	lspconf_setup = function()
 		local lspconfig = require("lspconfig")
@@ -30,6 +33,15 @@ return {
       capabilities = capabilities,
     })
 
+    lspconfig.cssls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+
+    lspconfig.html.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
 		require("configs.keymaps.language_server")
 	end,
 }
