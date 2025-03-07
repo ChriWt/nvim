@@ -1,7 +1,8 @@
 local __builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<leader>ff", __builtin.find_files, { desc = "Search File", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>fi", __builtin.live_grep, { desc = "Search Inside Files", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>fi", __builtin.live_grep, { desc = "Search Inside Project Files", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>fc", __builtin.current_buffer_fuzzy_find, { desc = "Search Inside Current Files", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>fo", __builtin.buffers, { desc = "Search Open Buffer", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>th", __builtin.colorscheme, { desc = "Change Theme", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>hh", __builtin.keymaps, { desc = "Keymaps Help", noremap = true, silent = true })
