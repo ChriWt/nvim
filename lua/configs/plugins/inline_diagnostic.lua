@@ -1,5 +1,12 @@
 return {
+  preset = "amongus",
+
   options = {
-    overflow = "wrap"
+    show_source = true,
+
+    overflow = {
+      mode = "wrap",
+      padding = 0,
+    }
   }
 }

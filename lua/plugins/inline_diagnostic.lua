@@ -4,5 +4,6 @@ return {
   event = "BufReadPre",
   config = function()
     require("tiny-inline-diagnostic").setup(require("configs.plugins.inline_diagnostic"))
+    vim.diagnostic.config({ virtual_text = false })
   end,
 }
