@@ -8,6 +8,7 @@ return {
 			config = require("configs.plugins.pyvenv").telescope_conf,
 		},
 	},
+	branch = "regexp",
 	lazy = true,
 	ft = "python",
 	config = require("configs.plugins.pyvenv").venv_selector_conf,
